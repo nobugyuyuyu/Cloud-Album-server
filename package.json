@@ -1,0 +1,32 @@
+{
+  "name": "ptoto",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.927.0",
+    "cors": "^2.8.5",
+    "cron": "^1.8.2",
+    "crypto": "^1.0.1",
+    "express": "^4.17.1",
+    "express-validator": "^6.11.1",
+    "ffcreator": "^3.0.6",
+    "ffmpeg": "0.0.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.13",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "nanoid": "^3.1.23",
+    "node-cron": "^3.0.0",
+    "node-schedule": "^2.0.0",
+    "request": "^2.88.2",
+    "save": "^2.4.0",
+    "tencentcloud-sdk-nodejs": "^4.0.148"
+  }
+}

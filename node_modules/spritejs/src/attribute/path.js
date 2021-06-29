@@ -1,0 +1,173 @@
+import Node from './node';
+import {parseColor} from '../utils/color';
+import {toNumber, toString, toArray} from '../utils/attribute_value';
+
+const setDefault = Symbol.for('spritejs_setAttributeDefault');
+const setAttribute = Symbol.for('spritejs_setAttribute');
+const getAttribute = Symbol.for('spritejs_getAttribute');
+
+export default class Path extends Node {
+  constructor(subject) {
+    super(subject);
+    this[setDefault]({
+      d: '',
+      normalize: false,
+      fillColor: undefined,
+      fillRule: 'nonzero',
+      strokeColor: undefined,
+      lineWidth: 1,
+      lineJoin: 'miter', // 'miter' or 'bevel' or 'round'
+      lineCap: 'butt', // 'butt' or 'square' or 'round'
+      roundSegments: 20, // default roundSegment if lineJoin or lineCap is round
+      lineDash: undefined,
+      lineDashOffset: 0,
+      miterLimit: 10,
+      texture: undefined,
+      textureRect: undefined,
+      textureRepeat: false,
+      sourceRect: undefined,
+      clipPath: undefined,
+    });
+  }
+
+  get d() {
+    return this[getAttribute]('d');
+  }
+
+  set d(value) {
+    this[setAttribute]('d', toString(value));
+  }
+
+  get normalize() {
+    return this[getAttribute]('normalize');
+  }
+
+  set normalize(value) {
+    this[setAttribute]('normalize', !!value);
+  }
+
+  get fillColor() {
+    return this[getAttribute]('fillColor');
+  }
+
+  set fillColor(value) {
+    this[setAttribute]('fillColor', parseColor(value));
+  }
+
+  get fillRule() {
+    return this[getAttribute]('fillRule');
+  }
+
+  set fillRule(value) {
+    if(value != null && value !== 'nonzero' && value !== 'evenodd') throw new TypeError('Invalid fill rule.');
+    this[setAttribute]('fillRule', value);
+  }
+
+  get strokeColor() {
+    return this[getAttribute]('strokeColor');
+  }
+
+  set strokeColor(value) {
+    this[setAttribute]('strokeColor', parseColor(value));
+  }
+
+  get lineWidth() {
+    return this[getAttribute]('lineWidth');
+  }
+
+  set lineWidth(value) {
+    this[setAttribute]('lineWidth', toNumber(value));
+  }
+
+  get lineJoin() {
+    return this[getAttribute]('lineJoin');
+  }
+
+  set lineJoin(value) {
+    if(value != null && value !== 'miter' && value !== 'bevel' && value !== 'round') throw new TypeError('Invalid lineJoin type.');
+    this[setAttribute]('lineJoin', value);
+  }
+
+  get lineCap() {
+    return this[getAttribute]('lineCap');
+  }
+
+  set lineCap(value) {
+    if(value != null && value !== 'butt' && value !== 'square' && value !== 'round') throw new TypeError('Invalid lineCap type.');
+    this[setAttribute]('lineCap', value);
+  }
+
+  get lineDash() {
+    return this[getAttribute]('lineDash');
+  }
+
+  set lineDash(value) {
+    value = toArray(value, true);
+    if(value != null && !Array.isArray(value)) value = [value];
+    this[setAttribute]('lineDash', value ? value.map(toNumber) : null);
+  }
+
+  get lineDashOffset() {
+    return this[getAttribute]('lineDashOffset');
+  }
+
+  set lineDashOffset(value) {
+    this[setAttribute]('lineDashOffset', toNumber(value));
+  }
+
+  get miterLimit() {
+    return this[getAttribute]('miterLimit');
+  }
+
+  set miterLimit(value) {
+    this[setAttribute]('miterLimit', toNumber(value));
+  }
+
+  get roundSegments() {
+    return this[getAttribute]('roundSegments');
+  }
+
+  set roundSegments(value) {
+    this[setAttribute]('roundSegments', value);
+  }
+
+  get texture() {
+    return this[getAttribute]('texture');
+  }
+
+  set texture(value) {
+    this[setAttribute]('texture', value);
+  }
+
+  get textureRect() {
+    return this[getAttribute]('textureRect');
+  }
+
+  set textureRect(value) {
+    this[setAttribute]('textureRect', value);
+  }
+
+  get sourceRect() {
+    return this[getAttribute]('sourceRect');
+  }
+
+  set sourceRect(value) {
+    this[setAttribute]('sourceRect', value);
+  }
+
+  get textureRepeat() {
+    return this[getAttribute]('textureRepeat');
+  }
+
+  set textureRepeat(value) {
+    this[setAttribute]('textureRepeat', !!value);
+  }
+
+  get clipPath() {
+    return this[getAttribute]('clipPath');
+  }
+
+  set clipPath(value) {
+    this[setAttribute]('clipPath', value);
+  }
+}
